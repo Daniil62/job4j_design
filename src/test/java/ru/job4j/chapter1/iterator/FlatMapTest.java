@@ -1,4 +1,4 @@
-package ru.job4j.data_structures_and_algorithms;
+package ru.job4j.chapter1.iterator;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;

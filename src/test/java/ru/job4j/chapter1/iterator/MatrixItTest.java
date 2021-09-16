@@ -1,4 +1,4 @@
-package ru.job4j.data_structures_and_algorithms;
+package ru.job4j.chapter1.iterator;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -12,21 +12,27 @@ public class MatrixItTest {
 
     @Test
     public void when4El() {
-        Integer[][] in = { {1} };
+        Integer[][] in = {
+                {1}
+        };
         MatrixIt<Integer> it = new MatrixIt<>(in);
         assertThat(it.next(), is(1));
     }
 
     @Test
     public void whenFirstEmptyThenHasNext() {
-        String[][] in = { {}, {"A"} };
+        String[][] in = {
+                {}, {"A"}
+        };
         MatrixIt<String> it = new MatrixIt<>(in);
         assertThat(it.hasNext(), is(true));
     }
 
     @Test
     public void whenRowsHasDifferentSize() {
-        Integer[][] in = { {1}, {2, 3} };
+        Integer[][] in = {
+                {1}, {2, 3}
+        };
         MatrixIt<Integer> it = new MatrixIt<>(in);
         assertThat(it.next(), is(1));
         assertThat(it.next(), is(2));
@@ -35,7 +41,9 @@ public class MatrixItTest {
 
     @Test
     public void whenFewEmpty() {
-        Integer[][] in = { {1}, {}, {}, {}, {5} };
+        Integer[][] in = {
+                {1}, {}, {}, {}, {5}
+        };
         MatrixIt<Integer> it = new MatrixIt<>(in);
         assertThat(it.next(), is(1));
         assertThat(it.next(), is(5));
@@ -43,21 +51,27 @@ public class MatrixItTest {
 
     @Test
     public void whenEmpty() {
-        Integer[][] in = { {} };
+        Integer[][] in = {
+                {}
+        };
         MatrixIt<Integer> it = new MatrixIt<>(in);
         assertThat(it.hasNext(), is(false));
     }
 
     @Test(expected = NoSuchElementException.class)
     public void whenEmptyThenNext() {
-        Integer[][] in = { {} };
+        Integer[][] in = {
+                {}
+        };
         MatrixIt<Integer> it = new MatrixIt<>(in);
         it.next();
     }
 
     @Test
     public void whenMultiHasNext() {
-        Integer[][] in = { {}, {2} };
+        Integer[][] in = {
+                {}, {2}
+        };
         MatrixIt<Integer> it = new MatrixIt<>(in);
         assertThat(it.hasNext(), is(true));
         assertThat(it.hasNext(), is(true));
@@ -65,7 +79,9 @@ public class MatrixItTest {
 
     @Test
     public void whenHasNullValueAndEmptyCells() {
-        Integer[][] in = { {1, null}, {}, {}, {2} };
+        Integer[][] in = {
+                {1, null}, {}, {}, {2}
+        };
         MatrixIt<Integer> it = new MatrixIt<>(in);
         assertThat(it.next(), is(1));
         assertThat(it.next(), is(Matchers.nullValue()));
@@ -74,7 +90,9 @@ public class MatrixItTest {
 
     @Test
     public void whenHasOneElementAndCheckHasNextAfterThisElement() {
-        Integer[][] in = { {1} };
+        Integer[][] in = {
+                {1}
+        };
         MatrixIt<Integer> it = new MatrixIt<>(in);
         assertThat(it.next(), is(1));
         assertThat(it.hasNext(), is(false));
@@ -82,7 +100,9 @@ public class MatrixItTest {
 
     @Test
     public void whenNoElements() {
-        Integer[][] in = { {}, {}, {} };
+        Integer[][] in = {
+                {}, {}, {}
+        };
         MatrixIt<Integer> it = new MatrixIt<>(in);
         assertThat(it.hasNext(), is(false));
     }
