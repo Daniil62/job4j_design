@@ -41,7 +41,7 @@ public class EvenNumbersIteratorTest {
 
     @Test
     public void shouldReturnFalseIfNoAnyEvenNumbers() {
-        it = new EvenNumbersIterator(new int[]{1});
+        it = new EvenNumbersIterator(new int[]{});
         assertThat(it.hasNext(), is(false));
     }
 
@@ -56,5 +56,6 @@ public class EvenNumbersIteratorTest {
         assertThat(it.next(), is(6));
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(8));
+        assertThat(it.hasNext(), is(false));
     }
 }
