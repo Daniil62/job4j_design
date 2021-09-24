@@ -7,8 +7,6 @@ import org.junit.Test;
 import java.util.*;
 import java.util.stream.IntStream;
 
-import static org.hamcrest.core.Is.is;
-
 public class SimpleArrayListTest {
     List<Integer> list;
 

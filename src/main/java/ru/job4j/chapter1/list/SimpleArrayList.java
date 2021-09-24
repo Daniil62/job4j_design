@@ -4,7 +4,7 @@ import java.util.*;
 
 public class SimpleArrayList<T> implements List<T> {
 
-    private transient Object[] container = new Object[10];
+    private transient T[] container = (T[]) new Object[10];
     private int size, point, modCount = 0;
 
     public SimpleArrayList(Collection<T> collection) {
@@ -14,7 +14,7 @@ public class SimpleArrayList<T> implements List<T> {
     }
 
     public SimpleArrayList(int size) {
-        this.container = new Object[size];
+        this.container = (T[]) new Object[size];
     }
 
     public SimpleArrayList() {
@@ -22,34 +22,36 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public void add(T value) {
-        add(value, container, size);
-        ++size;
+        if (size == container.length) {
+            grow();
+        }
+        container[size++] = value;
         ++modCount;
     }
 
     @Override
     public T set(int index, T newValue) {
         Objects.checkIndex(index, size);
-        Object result = container[index];
+        T result = container[index];
         container[index] = newValue;
         ++modCount;
-        return (T) result;
+        return result;
     }
 
     @Override
     public T remove(int index) {
         Objects.checkIndex(index, size);
-        Object result = container[index];
+        T result = container[index];
         System.arraycopy(container, index + 1, container, index, size - 1);
         --size;
         ++modCount;
-        return (T) result;
+        return result;
     }
 
     @Override
     public T get(int index) {
         Objects.checkIndex(index, size);
-        return (T) container[index];
+        return container[index];
     }
 
     @Override
@@ -59,8 +61,9 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
+        return new Iterator<>() {
             int expectedModeCount = modCount;
+
             @Override
             public boolean hasNext() {
                 return point < size;
@@ -74,20 +77,12 @@ public class SimpleArrayList<T> implements List<T> {
                 if (expectedModeCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return (T) container[point++];
+                return container[point++];
             }
         };
     }
 
-    private void add(T value, Object[] array, int s) {
-        if (array.length == s) {
-            array = grow();
-        }
-        array[s] = value;
-    }
-
-    private Object[] grow() {
+    private void grow() {
         container = Arrays.copyOf(container, size * 2);
-        return container;
     }
 }
