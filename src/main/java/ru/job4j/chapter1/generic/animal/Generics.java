@@ -38,13 +38,19 @@ public class Generics {
         generics.printObject(third);
         System.out.println();
 
-//        generics.printBoundedWildCard(first);      //  error: bounded from above
+ /**
+     generics.printBoundedWildCard(first);
+     error: bounded from above
+ */
         generics.printBoundedWildCard(second);
         generics.printBoundedWildCard(third);
         System.out.println();
 
+ /**
+ *    generics.printLowerBoundedWildCard(third);
+ *    error: bounded from below
+ */
         generics.printLowerBoundedWildCard(first);
         generics.printLowerBoundedWildCard(second);
-//        generics.printLowerBoundedWildCard(third); //  error: bounded from below
     }
 }
