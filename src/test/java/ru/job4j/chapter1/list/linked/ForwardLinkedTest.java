@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertFalse;
 
 public class ForwardLinkedTest {
 
@@ -58,5 +59,50 @@ public class ForwardLinkedTest {
         linked.deleteFirst();
         linked.deleteFirst();
         assertThat(linked.size(), is(1));
+    }
+
+    @Test
+    public void whenAddAndRevertThenIterate() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.add(1);
+        linked.add(2);
+        linked.revert();
+        Iterator<Integer> it = linked.iterator();
+        assertThat(it.next(), is(2));
+        assertThat(it.next(), is(1));
+    }
+
+    @Test
+    public void whenAddAndRevertMoreElementsThenIterate() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.add(1);
+        linked.add(2);
+        linked.add(3);
+        linked.add(4);
+        linked.add(5);
+        linked.add(6);
+        linked.add(7);
+        linked.revert();
+        Iterator<Integer> it = linked.iterator();
+        assertThat(it.next(), is(7));
+        assertThat(it.next(), is(6));
+        assertThat(it.next(), is(5));
+        assertThat(it.next(), is(4));
+        assertThat(it.next(), is(3));
+        assertThat(it.next(), is(2));
+        assertThat(it.next(), is(1));
+    }
+
+    @Test
+    public void whenSize0ThenReturnFalse() {
+        ForwardLinked<Integer> emptyList = new ForwardLinked<>();
+        assertFalse(emptyList.revert());
+    }
+
+    @Test
+    public void whenSize1ThenReturnFalse() {
+        ForwardLinked<Integer> singleList = new ForwardLinked<>();
+        singleList.add(1);
+        assertFalse(singleList.revert());
     }
 }
