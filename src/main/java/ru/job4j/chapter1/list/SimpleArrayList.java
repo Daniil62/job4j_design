@@ -5,7 +5,7 @@ import java.util.*;
 public class SimpleArrayList<T> implements List<T> {
 
     private transient T[] container = (T[]) new Object[10];
-    private int size, point, modCount = 0;
+    private int size, modCount = 0;
 
     public SimpleArrayList(Collection<T> collection) {
         for (T element : collection) {
@@ -63,6 +63,7 @@ public class SimpleArrayList<T> implements List<T> {
     public Iterator<T> iterator() {
         return new Iterator<>() {
             int expectedModeCount = modCount;
+            int point = 0;
 
             @Override
             public boolean hasNext() {

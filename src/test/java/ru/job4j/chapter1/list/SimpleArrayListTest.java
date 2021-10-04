@@ -88,7 +88,7 @@ public class SimpleArrayListTest {
     @Test
     public void whenGetIteratorTwiceThenStartAlwaysFromBeginning() {
         Assert.assertEquals(Integer.valueOf(1), list.iterator().next());
-        Assert.assertEquals(Integer.valueOf(2), list.iterator().next());
+        Assert.assertEquals(Integer.valueOf(1), list.iterator().next());
     }
 
     @Test
