@@ -1,3 +1,41 @@
 # job4j_design
 ___
 ## Учебный репозиторий курса "Junior" **[Job4j](https://job4j.ru/)**
+___
+## Темы курса:
+- ### Структуры данных и алгоритмы:
+    - Maven
+    - Iterator
+    - Generic
+    - List
+    - Set
+    - Map
+    - Tree
+___
+- ### Ввод - вывод:
+    - Socket
+    - Логгирование
+    - Сериализация
+___
+- ### SQL, JDBC:
+    - Настройка PostgreSQL
+    - Create Update Insert
+    - Query
+    - Outer join
+    - JDBC
+    - Проект. Агрегатор Java вакансий
+___
+- ### Garbage Collection:
+    - Понятие сборщик мусора
+    - Виды сборщиков мусоров
+    - Профилирование приложения
+    - Типы ссылок и коллекции на soft weak ссылках
+___
+- ### ООД:
+    - TDD
+    - SRP
+    - OCP
+    - LSP
+    - ISP
+    - DIP
+___
