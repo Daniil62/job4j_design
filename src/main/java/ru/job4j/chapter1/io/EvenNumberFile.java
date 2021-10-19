@@ -7,7 +7,7 @@ public class EvenNumberFile {
 
     private String scanFile() {
         StringBuilder builder = new StringBuilder();
-        try (FileInputStream in = new FileInputStream("C:\\projects\\job4j_design\\even.txt")) {
+        try (FileInputStream in = new FileInputStream("C:\\projects\\job4j_design\\txt_files\\even.txt")) {
             int numb;
             while ((numb = in.read()) != -1) {
                 builder.append((char) numb);
