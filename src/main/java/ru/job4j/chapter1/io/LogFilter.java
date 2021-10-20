@@ -20,6 +20,14 @@ public class LogFilter {
         return result;
     }
 
+    public static void save(List<String> log, String file) {
+        try (PrintWriter out = new PrintWriter(new BufferedOutputStream(new FileOutputStream(file)))) {
+            log.forEach(out::println);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void showLog(List<String> log) {
         for (String s : log) {
             System.out.println(s);
@@ -29,5 +37,6 @@ public class LogFilter {
     public static void main(String[] args) {
         List<String> log = LogFilter.filter("./txt_files/log.txt");
         LogFilter.showLog(log);
+        LogFilter.save(log, "./txt_files/404.txt");
     }
 }
