@@ -1,5 +1,9 @@
 package ru.job4j.chapter1.socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.job4j.chapter1.logging.UsageLog4j;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,6 +12,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class EchoSocked {
+
+    private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
     public void connection() throws IOException {
         try (ServerSocket server = new ServerSocket(9000)) {
@@ -50,7 +56,11 @@ public class EchoSocked {
         private static final String REQUEST_EXIT_SEQUENCE = "?msg=Exit";
     }
 
-    public static void main(String[] args) throws IOException {
-       new EchoSocked().connection();
+    public static void main(String[] args) {
+        try {
+            new EchoSocked().connection();
+        } catch (IOException e) {
+            EchoSocked.LOG.error("Error in EchoSocked: ", e);
+        }
     }
 }
