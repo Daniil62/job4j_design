@@ -1,16 +1,32 @@
 package ru.job4j.chapter1.serialization.json;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
 
+@XmlRootElement(name = "effect")
 public class Effect {
 
+    @XmlAttribute
     private String name;
+    @XmlAttribute
     private boolean enabled;
+    @XmlAttribute
     private boolean bypass;
+    @XmlElementWrapper(name = "controls")
+    @XmlElement(name = "control")
     private String[] controls;
+    @XmlAttribute
     private byte inputs;
+    @XmlAttribute
     private byte outputs;
+    @XmlAttribute
     private byte voltage;
+
+    public Effect() {
+    }
 
     public Effect(String name, boolean enabled, boolean bypass,
                   String[] controls, byte inputs, byte outputs, byte voltage) {
@@ -25,8 +41,7 @@ public class Effect {
 
     @Override
     public String toString() {
-        return "Effect"
-                + System.lineSeparator()
+        return System.lineSeparator()
                 + "Name: " + name + ','
                 + System.lineSeparator()
                 + "enabled: " + enabled + ','

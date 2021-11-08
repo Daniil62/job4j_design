@@ -1,0 +1,40 @@
+{
+  "manufactured" : "Boss",
+  "deviceCount" : 2,
+  "enabled" : true,
+  "effects" : [
+    {
+      "name" : "Boss NS-2",
+      "enabled" : true,
+      "bypass" : false,
+      "controls" : [
+        "threshold", "decay", "mode"
+      ],
+      "inputs" : 2,
+      "outputs" : 2,
+      "voltage" : 9
+    },
+    {
+      "name" : "Boss PW-2",
+      "enabled" : true,
+      "bypass" : false,
+      "controls" : [
+        "level", "fat", "muscle", "drive"
+      ],
+      "inputs" : 1,
+      "outputs" : 1,
+      "voltage" : 9
+    },
+    {
+      "name" : "Boss DD-7",
+      "enabled" : false,
+      "bypass" : false,
+      "controls" : [
+        "effect level", "feedback", "delay time", "mode"
+      ],
+      "inputs" : 3,
+      "outputs" : 2,
+      "voltage" : 9
+    }
+  ]
+}
