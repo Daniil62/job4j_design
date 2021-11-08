@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<pedalboard>
+    <manufactured>Boss</manufactured>
+    <device_count>3</device_count>
+    <enabled>true</enabled>
+    <effects>
+        <effect>
+            <name>Boss CS-3</name>
+            <enabled>true</enabled>
+            <bypass>false</bypass>
+            <controls>
+                <control>level</control>
+                <control>tone</control>
+                <control>attack</control>
+                <control>sustain</control>
+            </controls>
+            <input>1</input>
+            <output>1</output>
+            <voltage>9</voltage>
+        </effect>
+
+        <effect>
+            <name>Boss HM-3</name>
+            <enabled>true</enabled>
+            <bypass>false</bypass>
+            <controls>
+                <control>level</control>
+                <control>eq low</control>
+                <control>eq high</control>
+                <control>distortion</control>
+            </controls>
+            <input>1</input>
+            <output>1</output>
+            <voltage>9</voltage>
+        </effect>
+
+        <effect>
+            <name>Boss RV-5</name>
+            <enabled>true</enabled>
+            <bypass>false</bypass>
+            <controls>
+                <control>effect level</control>
+                <control>tone</control>
+                <control>time</control>
+                <control>mode</control>
+            </controls>
+            <input>2</input>
+            <output>2</output>
+            <voltage>9</voltage>
+        </effect>
+    </effects>
+</pedalboard>
