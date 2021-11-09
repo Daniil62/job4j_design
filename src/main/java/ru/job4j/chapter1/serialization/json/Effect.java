@@ -39,6 +39,34 @@ public class Effect {
         this.voltage = voltage;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public boolean isBypass() {
+        return bypass;
+    }
+
+    public String[] getControls() {
+        return controls;
+    }
+
+    public byte getInputs() {
+        return inputs;
+    }
+
+    public byte getOutputs() {
+        return outputs;
+    }
+
+    public byte getVoltage() {
+        return voltage;
+    }
+
     @Override
     public String toString() {
         return System.lineSeparator()

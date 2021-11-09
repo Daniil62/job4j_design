@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<pedalBoard>
-    <manufactured>Boss</manufactured>
-    <device_count>3</device_count>
-    <enabled>true</enabled>
+<pedalBoard manufactured="Boss" deviceCount="3" enabled="true">
     <effects>
         <effect name="Boss CS-3" enabled="true" bypass="false" inputs="1" outputs="1" voltage="9">
             <controls>

@@ -2,6 +2,7 @@ package ru.job4j.chapter1.serialization.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.job4j.chapter1.logging.UsageLog4j;
@@ -37,6 +38,22 @@ public class PedalBoard {
         this.deviceCount = effects.length;
     }
 
+    public String getManufactured() {
+        return manufactured;
+    }
+
+    public int getDeviceCount() {
+        return deviceCount;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public Effect[] getEffects() {
+        return effects;
+    }
+
     public static PedalBoard createFromJson(File file) {
         validate(file);
         StringBuilder builder = new StringBuilder();
@@ -66,6 +83,14 @@ public class PedalBoard {
         } catch (FileNotFoundException e) {
             LOG.error("Creating json error: ", e);
         }
+    }
+
+    public JSONObject createJsonObject() {
+        return new JSONObject(this);
+    }
+
+    public String createJsonString() {
+        return createJsonObject().toString();
     }
 
     public static PedalBoard createFromStringXml(String xml) {
@@ -143,21 +168,14 @@ public class PedalBoard {
 
     public static void main(String[] args) {
 
-        PedalBoard firstBoard = PedalBoard.createFromXml(new File(
-                ".\\src\\main\\java\\ru\\job4j\\chapter1\\serialization\\json\\file\\pedalboard.xml"));
+        PedalBoard firstBoard = PedalBoard.createFromJson(new File(
+                ".\\src\\main\\java\\ru\\job4j\\chapter1\\serialization\\json\\files\\pedalboard.json"));
 
-        String xml = firstBoard.parseToXml();
+        PedalBoard secondBoard = PedalBoard.createFromJsonString(firstBoard.createJsonString());
 
-        System.out.println("\nFirst board to string\n___________________________");
-        System.out.println(firstBoard.toString());
-        System.out.println("\nFirst board to json\n___________________________");
-        System.out.println(firstBoard.parseToJson());
-        System.out.println("\nFirst board to xml\n___________________________");
-        System.out.println(xml);
+        System.out.println(firstBoard.createJsonString());
+        System.out.println(firstBoard.createJsonObject());
 
-        PedalBoard secondBoard = PedalBoard.createFromStringXml(xml);
-
-        System.out.println("\nsecond board to string\n___________________________");
-        System.out.println(secondBoard.toString());
+        System.out.println(secondBoard.parseToJson());
     }
 }
