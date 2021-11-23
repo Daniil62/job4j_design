@@ -1,0 +1,1 @@
+select * from fauna where discovery_date < '01.01.1950';
