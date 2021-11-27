@@ -15,7 +15,6 @@ public class ConfigTest {
         config.load();
         assertThat(config.value("hibernate.dialect"), is("org.hibernate.dialect.PostgreSQLDialect"));
         assertThat(config.value("###"), is(Matchers.nullValue()));
-        assertThat(config.size(), is(5));
     }
 
     @Test
