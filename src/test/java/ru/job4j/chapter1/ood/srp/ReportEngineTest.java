@@ -6,9 +6,7 @@ import static org.hamcrest.Matchers.is;
 import org.junit.Test;
 import ru.job4j.chapter1.ood.srp.reports.Report;
 import ru.job4j.chapter1.ood.srp.reports.ReportEngine;
-import ru.job4j.chapter1.ood.srp.reports.filter.AccountingFilter;
-import ru.job4j.chapter1.ood.srp.reports.filter.DecreaseSalaryFilter;
-import ru.job4j.chapter1.ood.srp.reports.filter.HTMLFilter;
+import ru.job4j.chapter1.ood.srp.reports.filter.*;
 import ru.job4j.chapter1.ood.srp.reports.model.Employee;
 import ru.job4j.chapter1.ood.srp.reports.store.MemStore;
 import ru.job4j.chapter1.ood.srp.reports.utils.DecreaseSalaryComparator;
@@ -105,6 +103,40 @@ public class ReportEngineTest {
     }
 
     @Test
+    public void whenXMLFormatGenerated() {
+        MemStore store = new MemStore();
+        Employee worker = new Employee("Ivan", null, null, 300000);
+        Employee worker2 = new Employee("Vladimir", null, null, 200000);
+        store.add(worker);
+        store.add(worker2);
+        Report engine = new ReportEngine(store);
+        String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+                + "<employees>\n"
+                + "    <employee>\n"
+                + "        <name>Ivan</name>\n"
+                + "        <salary>300000.0</salary>\n"
+                + "    </employee>\n"
+                + "    <employee>\n"
+                + "        <name>Vladimir</name>\n"
+                + "        <salary>200000.0</salary>\n"
+                + "    </employee>\n"
+                + "</employees>\n";
+        assertThat(engine.generate(em -> true, new XMLFilter()), is(expected));
+    }
+
+    @Test
+    public void whenJSONFormatGenerated() {
+        MemStore store = new MemStore();
+        Employee worker = new Employee("Ivan", null, null, 300000);
+        Employee worker2 = new Employee("Vladimir", null, null, 200000);
+        store.add(worker);
+        store.add(worker2);
+        Report engine = new ReportEngine(store);
+        String expected = "[{\"name\":\"Ivan\",\"salary\":300000.0},{\"name\":\"Vladimir\",\"salary\":200000.0}]";
+        assertThat(engine.generate(em -> true, new JSONFilter()), is(expected));
+    }
+
+    @Test
     public void whenHaveNoEmployeesWithoutFilters() {
         MemStore store = new MemStore();
         Report engine = new ReportEngine(store);
@@ -130,5 +162,19 @@ public class ReportEngineTest {
         MemStore store = new MemStore();
         Report engine = new ReportEngine(store);
         assertThat(engine.generate(em -> true, new AccountingFilter("$")), is(""));
+    }
+
+    @Test
+    public void whenHaveNoEmployeesWithXMLFilter() {
+        MemStore store = new MemStore();
+        Report engine = new ReportEngine(store);
+        assertThat(engine.generate(em -> true, new XMLFilter()), is(""));
+    }
+
+    @Test
+    public void whenHaveNoEmployeesWithJSONFilter() {
+        MemStore store = new MemStore();
+        Report engine = new ReportEngine(store);
+        assertThat(engine.generate(em -> true, new JSONFilter()), is(""));
     }
 }
