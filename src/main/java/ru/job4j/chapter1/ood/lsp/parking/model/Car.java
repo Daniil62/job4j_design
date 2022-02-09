@@ -2,10 +2,12 @@ package ru.job4j.chapter1.ood.lsp.parking.model;
 
 public class Car extends Vehicle {
 
+    public static final int SIZE = 1;
+
     public Car(String name, String serialPlate) {
         this.name = name;
         this.serialPlate = serialPlate;
-        this.size = 1;
+        this.size = SIZE;
     }
 
     @Override

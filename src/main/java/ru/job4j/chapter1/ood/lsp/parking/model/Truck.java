@@ -2,10 +2,12 @@ package ru.job4j.chapter1.ood.lsp.parking.model;
 
 public class Truck extends Vehicle {
 
+    private static final int DEFAULT_MIN_SIZE = 2;
+
     public Truck(int size, String name, String serialPlate) {
         this.name = name;
         this.serialPlate = serialPlate;
-        this.size = Math.max(size, 2);
+        this.size = Math.max(size, DEFAULT_MIN_SIZE);
     }
 
     @Override
